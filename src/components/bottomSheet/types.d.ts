@@ -311,6 +311,11 @@ export interface BottomSheetProps
    */
   footerComponent?: React.FC<BottomSheetFooterProps>;
   /**
+   * Component to be placed as a top element.
+   * @type React.FC
+   */
+  topElementComponent?: React.FC;
+  /**
    * A scrollable node or normal view.
    * @type (() => React.ReactElement) | React.ReactNode[] | React.ReactNode
    */
