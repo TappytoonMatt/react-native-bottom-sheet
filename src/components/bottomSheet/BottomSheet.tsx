@@ -40,6 +40,7 @@ import BottomSheetContainer from '../bottomSheetContainer';
 import BottomSheetGestureHandlersProvider from '../bottomSheetGestureHandlersProvider';
 import BottomSheetBackdropContainer from '../bottomSheetBackdropContainer';
 import BottomSheetHandleContainer from '../bottomSheetHandleContainer';
+import BottomSheetTopElementContainer from '../bottomSheetTopElementContainer';
 import BottomSheetBackgroundContainer from '../bottomSheetBackgroundContainer';
 import BottomSheetFooterContainer from '../bottomSheetFooterContainer/BottomSheetFooterContainer';
 import BottomSheetDraggableView from '../bottomSheetDraggableView';
@@ -71,6 +72,7 @@ import {
   DEFAULT_KEYBOARD_INPUT_MODE,
   INITIAL_CONTAINER_HEIGHT,
   INITIAL_HANDLE_HEIGHT,
+  INITIAL_TOP_ELEMENT_HEIGHT,
   INITIAL_POSITION,
   INITIAL_SNAP_POINT,
   DEFAULT_ENABLE_PAN_DOWN_TO_CLOSE,
@@ -163,6 +165,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       backdropComponent,
       backgroundComponent,
       footerComponent,
+      topElementComponent,
       children: Content,
 
       // accessibility
@@ -214,6 +217,9 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
     const animatedHandleHeight = useReactiveSharedValue(
       _providedHandleHeight ?? INITIAL_HANDLE_HEIGHT
     );
+    const animatedTopElementHeight = useReactiveSharedValue(
+      INITIAL_TOP_ELEMENT_HEIGHT
+    );
     const animatedFooterHeight = useSharedValue(0);
     const animatedContentHeight = useSharedValue(INITIAL_CONTAINER_HEIGHT);
     const animatedSnapPoints = useNormalizedSnapPoints(
@@ -221,6 +227,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       animatedContainerHeight,
       animatedContentHeight,
       animatedHandleHeight,
+      animatedTopElementHeight,
       enableDynamicSizing,
       maxDynamicContentSize
     );
@@ -281,7 +288,15 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       if (animatedHandleHeight.value !== INITIAL_HANDLE_HEIGHT) {
         isHandleHeightCalculated = true;
       }
-
+      let isTopElementHeightCalculated = false;
+      if (topElementComponent === null || topElementComponent === undefined) {
+        // @ts-ignore
+        animatedTopElementHeight.value = 0;
+        isTopElementHeightCalculated = true;
+      }
+      if (animatedTopElementHeight.value !== INITIAL_TOP_ELEMENT_HEIGHT) {
+        isTopElementHeightCalculated = true;
+      }
       let isSnapPointsNormalized = false;
       // the first snap point did normalized
       if (animatedSnapPoints.value[0] !== INITIAL_SNAP_POINT) {
@@ -291,6 +306,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       return (
         isContainerHeightCalculated &&
         isHandleHeightCalculated &&
+        isTopElementHeightCalculated &&
         isSnapPointsNormalized
       );
     });
@@ -1125,6 +1141,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         animatedContentHeight,
         animatedClosedPosition,
         animatedHandleHeight,
+        animatedTopElementHeight,
         animatedFooterHeight,
         animatedKeyboardHeight,
         animatedKeyboardHeightInContainer,
@@ -1158,6 +1175,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         animatedFooterHeight,
         animatedContainerHeight,
         animatedHandleHeight,
+        animatedTopElementHeight,
         animatedAnimationState,
         animatedKeyboardState,
         animatedKeyboardHeight,
@@ -1676,6 +1694,10 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
               style={_providedContainerStyle}
             >
               <Animated.View style={containerStyle}>
+                <BottomSheetTopElementContainer
+                  topElementComponent={topElementComponent}
+                  topElementHeight={animatedTopElementHeight}
+                />
                 <BottomSheetBackgroundContainer
                   key="BottomSheetBackgroundContainer"
                   animatedIndex={animatedIndex}
