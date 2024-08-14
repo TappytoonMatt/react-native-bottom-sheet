@@ -152,6 +152,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       onChange: _providedOnChange,
       onClose: _providedOnClose,
       onAnimate: _providedOnAnimate,
+      onAnimated: _providedOnAnimated,
 
       // private
       $modal = false,
@@ -655,6 +656,24 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       },
       [_providedOnAnimate, animatedSnapPoints, animatedCurrentIndex]
     );
+    const handleOnAnimated = useCallback(
+      function handleOnAnimated(currentIndex: number) {
+        print({
+          component: BottomSheet.name,
+          method: handleOnAnimated.name,
+          params: {
+            currentIndex,
+          },
+        });
+
+        if (!_providedOnAnimated) {
+          return;
+        }
+
+        _providedOnAnimated(currentIndex);
+      },
+      [_providedOnAnimated]
+    );
     //#endregion
 
     //#region animation
@@ -680,6 +699,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
             animatedNextPositionIndex: animatedNextPositionIndex.value,
           },
         });
+
+        runOnJS(handleOnAnimated)(animatedNextPositionIndex.value);
 
         animatedAnimationSource.value = ANIMATION_SOURCE.NONE;
         animatedAnimationState.value = ANIMATION_STATE.STOPPED;

@@ -276,6 +276,12 @@ export interface BottomSheetProps
    * @type (fromIndex: number, toIndex: number) => void;
    */
   onAnimate?: (fromIndex: number, toIndex: number) => void;
+  /**
+   * Callback when the sheet about to animate end.
+   *
+   * @type (currentIndex: number) => void;
+   */
+  onAnimated?: (currentIndex: number) => void;
   //#endregion
 
   //#region components
