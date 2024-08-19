@@ -165,7 +165,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       backdropComponent,
       backgroundComponent,
       footerComponent,
-      topElementComponent,
+      animateTopElementComponent,
+      fixedTopElementComponent,
       children: Content,
 
       // accessibility
@@ -289,7 +290,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         isHandleHeightCalculated = true;
       }
       let isTopElementHeightCalculated = false;
-      if (topElementComponent === null || topElementComponent === undefined) {
+      if (!animateTopElementComponent && !fixedTopElementComponent) {
         // @ts-ignore
         animatedTopElementHeight.value = 0;
         isTopElementHeightCalculated = true;
@@ -1695,7 +1696,10 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
             >
               <Animated.View style={containerStyle}>
                 <BottomSheetTopElementContainer
-                  topElementComponent={topElementComponent}
+                  animatedAnimationState={animatedAnimationState}
+                  animatedIndex={animatedIndex}
+                  animateTopElementComponent={animateTopElementComponent}
+                  fixedTopElementComponent={fixedTopElementComponent}
                   topElementHeight={animatedTopElementHeight}
                 />
                 <BottomSheetBackgroundContainer
