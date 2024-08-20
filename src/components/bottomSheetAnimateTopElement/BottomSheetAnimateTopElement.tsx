@@ -1,11 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { LayoutChangeEvent, View } from 'react-native';
+import BottomSheetAnimateTopElementBackground from '../bottomSheetAnimateTopElementBackground';
 import type { BottomSheetAnimateTopElementProps } from './types';
 
 function BottomSheetAnimateTopElementComponent({
   animatedAnimateContainerHeight,
   animateTopElementBackgroundComponent:
-    AnimateTopElementBackgroundComponent = React.Fragment,
+    AnimateTopElementBackgroundComponent = BottomSheetAnimateTopElementBackground,
   animateTopElementComponent: AnimateTopElementComponent,
 }: BottomSheetAnimateTopElementProps) {
   const handleLayout = useCallback(
