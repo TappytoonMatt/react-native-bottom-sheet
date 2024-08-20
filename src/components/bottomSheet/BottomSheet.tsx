@@ -165,6 +165,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       backdropComponent,
       backgroundComponent,
       footerComponent,
+      animateTopElementBackgroundComponent,
       animateTopElementComponent,
       fixedTopElementComponent,
       children: Content,
@@ -1698,6 +1699,9 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                 <BottomSheetTopElementContainer
                   animatedAnimationState={animatedAnimationState}
                   animatedIndex={animatedIndex}
+                  animateTopElementBackgroundComponent={
+                    animateTopElementBackgroundComponent
+                  }
                   animateTopElementComponent={animateTopElementComponent}
                   fixedTopElementComponent={fixedTopElementComponent}
                   topElementHeight={animatedTopElementHeight}

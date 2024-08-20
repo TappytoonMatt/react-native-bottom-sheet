@@ -3,7 +3,7 @@ import { LayoutChangeEvent, View } from 'react-native';
 import type { BottomSheetFixedTopElementProps } from './types';
 
 function BottomSheetFixedTopElementComponent({
-  animatedPosition,
+  animatedFixedContainerHeight,
   fixedTopElementComponent: FixedTopElementComponent,
 }: BottomSheetFixedTopElementProps) {
   const handleLayout = useCallback(
@@ -12,9 +12,9 @@ function BottomSheetFixedTopElementComponent({
         layout: { height },
       },
     }: LayoutChangeEvent) {
-      animatedPosition.value = -height;
+      animatedFixedContainerHeight.value = height;
     },
-    [animatedPosition]
+    [animatedFixedContainerHeight]
   );
 
   return FixedTopElementComponent ? (

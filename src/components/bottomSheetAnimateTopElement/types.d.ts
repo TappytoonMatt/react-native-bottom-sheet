@@ -4,7 +4,7 @@ import type { BottomSheetTopElementContainerProps } from '../bottomSheetTopEleme
 export interface BottomSheetAnimateTopElementProps
   extends Pick<
     BottomSheetTopElementContainerProps,
-    'animatedAnimationState' | 'animatedIndex' | 'animateTopElementComponent'
+    'animateTopElementBackgroundComponent' | 'animateTopElementComponent'
   > {
-  animatedPosition: Animated.SharedValue<number>;
+  animatedAnimateContainerHeight: Animated.SharedValue<number>;
 }
