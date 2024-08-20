@@ -6,5 +6,5 @@ export interface BottomSheetFixedTopElementProps
     BottomSheetTopElementContainerProps,
     'fixedTopElementComponent'
   > {
-  animatedPosition: Animated.SharedValue<number>;
+  animatedFixedContainerHeight: Animated.SharedValue<number>;
 }

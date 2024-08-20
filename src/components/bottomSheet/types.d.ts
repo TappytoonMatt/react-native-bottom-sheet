@@ -1,4 +1,4 @@
-import type React from 'react';
+import type React, { PropsWithChildren } from 'react';
 import type { ViewStyle, Insets, StyleProp } from 'react-native';
 import type {
   SharedValue,
@@ -310,6 +310,11 @@ export interface BottomSheetProps
    * @type React.FC\<BottomSheetFooterProps\>
    */
   footerComponent?: React.FC<BottomSheetFooterProps>;
+  /**
+   * Component to be placed as animate top element background.
+   * @type React.FC\<PropsWithChildren\>
+   */
+  animateTopElementBackgroundComponent?: React.FC<PropsWithChildren>;
   /**
    * Component to be placed as animate top element.
    * @type React.FC
