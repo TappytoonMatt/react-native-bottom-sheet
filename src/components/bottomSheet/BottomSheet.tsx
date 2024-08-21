@@ -44,7 +44,7 @@ import BottomSheetTopElementContainer from '../bottomSheetTopElementContainer';
 import BottomSheetBackgroundContainer from '../bottomSheetBackgroundContainer';
 import BottomSheetFooterContainer from '../bottomSheetFooterContainer/BottomSheetFooterContainer';
 import BottomSheetDraggableView from '../bottomSheetDraggableView';
-// import BottomSheetDebugView from '../bottomSheetDebugView';
+import BottomSheetDebugView from '../bottomSheetDebugView';
 import {
   ANIMATION_STATE,
   KEYBOARD_STATE,
@@ -228,7 +228,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       _providedSnapPoints,
       animatedContainerHeight,
       animatedContentHeight,
-      animatedTopElementHeight,
+      animatedHandleHeight,
       enableDynamicSizing,
       maxDynamicContentSize
     );
@@ -236,7 +236,8 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       () => animatedSnapPoints.value[animatedSnapPoints.value.length - 1]
     );
     const animatedClosedPosition = useDerivedValue(() => {
-      let closedPosition = animatedContainerHeight.value;
+      let closedPosition =
+        animatedContainerHeight.value + animatedTopElementHeight.value;
 
       if ($modal || detached) {
         closedPosition = animatedContainerHeight.value + bottomInset;
@@ -723,6 +724,10 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         animatedAnimationState.value = ANIMATION_STATE.STOPPED;
         animatedNextPosition.value = INITIAL_VALUE;
         animatedNextPositionIndex.value = INITIAL_VALUE;
+
+        if (animatedPosition.value > animatedContainerHeight.value) {
+          animatedPosition.value = animatedContainerHeight.value;
+        }
       }
     );
     const animateToPosition: AnimateToPositionType = useWorkletCallback(
@@ -1746,7 +1751,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                   handleIndicatorStyle={_providedHandleIndicatorStyle}
                 />
               </Animated.View>
-              {/* <BottomSheetDebugView
+              <BottomSheetDebugView
                 values={{
                   // topInset,
                   // bottomInset,
@@ -1758,7 +1763,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                   // keyboardState,
                   // animatedIndex,
                   // animatedCurrentIndex,
-                  // animatedPosition,
+                  animatedPosition,
                   animatedContainerHeight,
                   animatedSheetHeight,
                   animatedHandleHeight,
@@ -1767,8 +1772,9 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                   // isLayoutCalculated,
                   // isContentHeightFixed,
                   // isInTemporaryPosition,
+                  animatedClosedPosition,
                 }}
-              /> */}
+              />
             </BottomSheetContainer>
           </BottomSheetGestureHandlersProvider>
         </BottomSheetInternalProvider>
