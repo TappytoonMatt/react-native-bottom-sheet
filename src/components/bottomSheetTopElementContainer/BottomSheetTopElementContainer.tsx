@@ -5,7 +5,6 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import { ANIMATION_STATE } from '../../constants';
 import { animate, print } from '../../utilities';
 import BottomSheetAnimateTopElement from '../bottomSheetAnimateTopElement';
 import BottomSheetFixedTopElement from '../bottomSheetFixedTopElement';
@@ -13,7 +12,6 @@ import { styles } from './styles';
 import type { BottomSheetTopElementContainerProps } from './types';
 
 function BottomSheetTopElementContainerComponent({
-  animatedAnimationState,
   animatedIndex,
   animateTopElementBackgroundComponent,
   animateTopElementComponent,
@@ -54,31 +52,11 @@ function BottomSheetTopElementContainerComponent({
   useAnimatedReaction(
     () => ({
       animateContainerHeight: animatedAnimateContainerHeight.value,
-      animationState: animatedAnimationState.value,
       fixedContainerHeight: animatedFixedContainerHeight.value,
       index: animatedIndex!.value,
     }),
-    (result, previousResult) => {
-      const {
-        animateContainerHeight,
-        animationState,
-        fixedContainerHeight,
-        index,
-      } = result;
-      const previousAnimateContainerHeight =
-        previousResult?.animateContainerHeight;
-      const previousAnimationState = previousResult?.animationState;
-      const previousFixedContainerHeight = previousResult?.fixedContainerHeight;
-      const previousIndex = previousResult?.index;
-      if (
-        (animateContainerHeight === previousAnimateContainerHeight &&
-          animationState === previousAnimationState &&
-          fixedContainerHeight === previousFixedContainerHeight &&
-          index === previousIndex) ||
-        animationState !== ANIMATION_STATE.STOPPED
-      ) {
-        return;
-      }
+    result => {
+      const { animateContainerHeight, fixedContainerHeight, index } = result;
       if (index === 0) {
         animatedPosition.value = animate({
           point: -(fixedContainerHeight + animateContainerHeight),
@@ -86,7 +64,12 @@ function BottomSheetTopElementContainerComponent({
       } else if (index === -1) {
         animatedPosition.value = -fixedContainerHeight;
       }
-    }
+    },
+    [
+      animatedAnimateContainerHeight.value,
+      animatedFixedContainerHeight.value,
+      animatedIndex!.value,
+    ]
   );
 
   return (

@@ -228,7 +228,6 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
       _providedSnapPoints,
       animatedContainerHeight,
       animatedContentHeight,
-      animatedHandleHeight,
       animatedTopElementHeight,
       enableDynamicSizing,
       maxDynamicContentSize
@@ -1697,7 +1696,6 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
             >
               <Animated.View style={containerStyle}>
                 <BottomSheetTopElementContainer
-                  animatedAnimationState={animatedAnimationState}
                   animatedIndex={animatedIndex}
                   animateTopElementBackgroundComponent={
                     animateTopElementBackgroundComponent

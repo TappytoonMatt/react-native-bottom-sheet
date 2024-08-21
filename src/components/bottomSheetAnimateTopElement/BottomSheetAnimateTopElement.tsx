@@ -9,7 +9,19 @@ function BottomSheetAnimateTopElementComponent({
     AnimateTopElementBackgroundComponent = BottomSheetAnimateTopElementBackground,
   animateTopElementComponent: AnimateTopElementComponent,
 }: BottomSheetAnimateTopElementProps) {
-  const handleLayout = useCallback(
+  const handleContainerLayout = useCallback(
+    function handleLayout({
+      nativeEvent: {
+        layout: { height },
+      },
+    }: LayoutChangeEvent) {
+      if (height === 0) {
+        animatedAnimateContainerHeight.value = 0;
+      }
+    },
+    [animatedAnimateContainerHeight]
+  );
+  const handleContentLayout = useCallback(
     function handleLayout({
       nativeEvent: {
         layout: { height },
@@ -19,13 +31,17 @@ function BottomSheetAnimateTopElementComponent({
     },
     [animatedAnimateContainerHeight]
   );
-  return AnimateTopElementComponent ? (
-    <AnimateTopElementBackgroundComponent>
-      <View onLayout={handleLayout}>
-        <AnimateTopElementComponent />
-      </View>
-    </AnimateTopElementBackgroundComponent>
-  ) : null;
+  return (
+    <View onLayout={handleContainerLayout}>
+      {AnimateTopElementComponent ? (
+        <AnimateTopElementBackgroundComponent>
+          <View onLayout={handleContentLayout}>
+            <AnimateTopElementComponent />
+          </View>
+        </AnimateTopElementBackgroundComponent>
+      ) : null}
+    </View>
+  );
 }
 
 const BottomSheetAnimateTopElement = memo(
