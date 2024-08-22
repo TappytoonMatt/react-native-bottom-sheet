@@ -131,6 +131,7 @@ export function createBottomSheetScrollableComponent<T, P>(
     //#region render
     if (Platform.OS === 'android') {
       const scrollableContent = (
+        // @ts-expect-error Server Component
         <NativeViewGestureHandler
           ref={nativeGestureRef}
           enabled={enableContentPanningGesture}
@@ -178,6 +179,7 @@ export function createBottomSheetScrollableComponent<T, P>(
         gestureType={GESTURE_SOURCE.SCROLLABLE}
         style={styles.container}
       >
+        {/* @ts-expect-error Server Component */}
         <NativeViewGestureHandler
           ref={nativeGestureRef}
           enabled={enableContentPanningGesture}

@@ -32,10 +32,13 @@ function BottomSheetAnimateTopElementComponent({
     },
     [animatedAnimateContainerHeight]
   );
+
   return (
+    // @ts-expect-error Server Component
     <View onLayout={handleContainerLayout}>
       {AnimateTopElementComponent ? (
         <AnimateTopElementBackgroundComponent style={styles.background}>
+          {/* @ts-expect-error Server Component */}
           <View onLayout={handleContentLayout}>
             <AnimateTopElementComponent />
           </View>

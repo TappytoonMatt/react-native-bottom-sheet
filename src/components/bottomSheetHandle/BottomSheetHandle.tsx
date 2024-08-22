@@ -33,6 +33,7 @@ const BottomSheetHandleComponent = ({
 
   // render
   return (
+    // @ts-expect-error Server Component
     <Animated.View
       style={containerStyle}
       accessible={accessible ?? undefined}
@@ -40,6 +41,7 @@ const BottomSheetHandleComponent = ({
       accessibilityLabel={accessibilityLabel ?? undefined}
       accessibilityHint={accessibilityHint ?? undefined}
     >
+      {/* @ts-expect-error Server Component */}
       <Animated.View style={indicatorStyle} />
       {children}
     </Animated.View>

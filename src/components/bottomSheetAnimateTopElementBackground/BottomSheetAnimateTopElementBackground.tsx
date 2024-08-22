@@ -6,6 +6,7 @@ function BottomSheetAnimateTopElementBackgroundComponent({
   children,
   style,
 }: BottomSheetAnimateTopElementBackgroundProps) {
+  // @ts-expect-error Server Component
   return <View style={style}>{children}</View>;
 }
 

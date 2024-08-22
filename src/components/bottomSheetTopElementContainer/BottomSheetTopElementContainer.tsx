@@ -73,11 +73,10 @@ function BottomSheetTopElementContainerComponent({
   );
 
   return (
+    // @ts-expect-error Server Component
     <View style={styles.container}>
-      <Animated.View
-        onLayout={handleLayout}
-        style={containerAnimatedStyle}
-      >
+      {/* @ts-expect-error Server Component */}
+      <Animated.View onLayout={handleLayout} style={containerAnimatedStyle}>
         <BottomSheetFixedTopElement
           animatedFixedContainerHeight={animatedFixedContainerHeight}
           fixedTopElementComponent={fixedTopElementComponent}

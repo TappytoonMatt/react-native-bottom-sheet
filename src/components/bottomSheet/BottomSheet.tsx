@@ -1703,6 +1703,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
               detached={detached}
               style={_providedContainerStyle}
             >
+              {/* @ts-expect-error Server Component */}
               <Animated.View style={containerStyle}>
                 <BottomSheetTopElementContainer
                   animatedIndex={animatedIndex}
@@ -1720,6 +1721,7 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
                   backgroundComponent={backgroundComponent}
                   backgroundStyle={_providedBackgroundStyle}
                 />
+                {/* @ts-expect-error Server Component */}
                 <Animated.View
                   pointerEvents="box-none"
                   style={contentMaskContainerStyle}

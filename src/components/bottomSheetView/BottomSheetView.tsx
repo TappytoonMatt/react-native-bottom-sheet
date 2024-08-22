@@ -79,6 +79,7 @@ function BottomSheetViewComponent({
 
   //render
   return (
+    // @ts-expect-error Server Component
     <Animated.View onLayout={handleLayout} style={containerStyle} {...rest}>
       {children}
     </Animated.View>

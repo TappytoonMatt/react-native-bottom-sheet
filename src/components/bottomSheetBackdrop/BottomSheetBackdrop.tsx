@@ -142,6 +142,7 @@ const BottomSheetBackdropComponent = ({
   //#endregion
 
   const AnimatedView = (
+    // @ts-expect-error Server Component
     <Animated.View
       style={containerStyle}
       pointerEvents={pointerEvents}
@@ -162,6 +163,7 @@ const BottomSheetBackdropComponent = ({
   );
 
   return pressBehavior !== 'none' ? (
+    // @ts-expect-error Server Component
     <TapGestureHandler onGestureEvent={gestureHandler}>
       {AnimatedView}
     </TapGestureHandler>

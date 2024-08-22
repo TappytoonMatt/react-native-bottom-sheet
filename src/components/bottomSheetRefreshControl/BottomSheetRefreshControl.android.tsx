@@ -21,7 +21,9 @@ const BottomSheetRefreshControlComponent = forwardRef<
 
   // render
   return (
+    // @ts-expect-error Server Component
     <NativeViewGestureHandler ref={ref} shouldCancelWhenOutside={false}>
+      {/* @ts-expect-error Server Component */}
       <AnimatedRefreshControl
         {...rest}
         onRefresh={onRefresh}

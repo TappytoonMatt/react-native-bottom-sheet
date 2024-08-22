@@ -79,6 +79,7 @@ function BottomSheetHandleContainerComponent({
       ? BottomSheetHandle
       : _providedHandleComponent;
   return HandleComponent !== null ? (
+    // @ts-expect-error Server Component
     <PanGestureHandler
       enabled={enableHandlePanningGesture}
       waitFor={waitFor}
@@ -90,6 +91,7 @@ function BottomSheetHandleContainerComponent({
       failOffsetY={failOffsetY}
       onGestureEvent={handlePanGestureHandler}
     >
+      {/* @ts-expect-error Server Component */}
       <Animated.View
         key="BottomSheetHandleContainer"
         onLayout={handleContainerLayout}
