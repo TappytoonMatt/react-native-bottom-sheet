@@ -21,3 +21,9 @@ or
 ```bash
 yarn add bottom-sheet-with-top-element
 ```
+
+## License
+
+This project is licensed under the MIT License.
+
+The original `@gorhom/bottom-sheet` library is also licensed under the MIT License.
