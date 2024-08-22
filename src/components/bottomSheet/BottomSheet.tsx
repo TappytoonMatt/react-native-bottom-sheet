@@ -241,7 +241,10 @@ const BottomSheetComponent = forwardRef<BottomSheet, BottomSheetProps>(
         animatedContainerHeight.value + animatedTopElementHeight.value;
 
       if ($modal || detached) {
-        closedPosition = animatedContainerHeight.value + bottomInset;
+        closedPosition =
+          animatedContainerHeight.value +
+          bottomInset +
+          animatedTopElementHeight.value;
       }
 
       return closedPosition;
