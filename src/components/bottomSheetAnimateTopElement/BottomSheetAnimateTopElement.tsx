@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { LayoutChangeEvent, View } from 'react-native';
 import BottomSheetAnimateTopElementBackground from '../bottomSheetAnimateTopElementBackground';
+import { styles } from './styles';
 import type { BottomSheetAnimateTopElementProps } from './types';
 
 function BottomSheetAnimateTopElementComponent({
@@ -34,7 +35,7 @@ function BottomSheetAnimateTopElementComponent({
   return (
     <View onLayout={handleContainerLayout}>
       {AnimateTopElementComponent ? (
-        <AnimateTopElementBackgroundComponent>
+        <AnimateTopElementBackgroundComponent style={styles.background}>
           <View onLayout={handleContentLayout}>
             <AnimateTopElementComponent />
           </View>

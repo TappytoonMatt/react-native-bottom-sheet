@@ -1,11 +1,12 @@
-import React, { memo, PropsWithChildren } from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native';
-import { styles } from './styles';
+import type { BottomSheetAnimateTopElementBackgroundProps } from './types';
 
 function BottomSheetAnimateTopElementBackgroundComponent({
   children,
-}: PropsWithChildren<{}>) {
-  return <View style={styles.container}>{children}</View>;
+  style,
+}: BottomSheetAnimateTopElementBackgroundProps) {
+  return <View style={style}>{children}</View>;
 }
 
 const BottomSheetAnimateTopElementBackground = memo(

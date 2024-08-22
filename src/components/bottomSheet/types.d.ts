@@ -11,6 +11,7 @@ import type { BottomSheetHandleProps } from '../bottomSheetHandle';
 import type { BottomSheetBackdropProps } from '../bottomSheetBackdrop';
 import type { BottomSheetBackgroundProps } from '../bottomSheetBackground';
 import type { BottomSheetFooterProps } from '../bottomSheetFooter';
+import type { BottomSheetAnimateTopElementBackgroundProps } from '../bottomSheetAnimateTopElementBackground';
 import type {
   ANIMATION_SOURCE,
   KEYBOARD_BEHAVIOR,
@@ -314,7 +315,7 @@ export interface BottomSheetProps
    * Component to be placed as animate top element background.
    * @type React.FC\<PropsWithChildren\>
    */
-  animateTopElementBackgroundComponent?: React.FC<PropsWithChildren>;
+  animateTopElementBackgroundComponent?: React.FC<BottomSheetAnimateTopElementBackgroundProps>;
   /**
    * Component to be placed as animate top element.
    * @type React.FC
