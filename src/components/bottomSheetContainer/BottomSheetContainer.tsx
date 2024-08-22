@@ -76,6 +76,7 @@ function BottomSheetContainerComponent({
 
   //#region render
   return (
+    // @ts-expect-error Server Component
     <View
       ref={containerRef}
       pointerEvents="box-none"

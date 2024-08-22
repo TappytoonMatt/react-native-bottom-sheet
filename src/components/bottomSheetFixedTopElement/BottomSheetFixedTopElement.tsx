@@ -18,6 +18,7 @@ function BottomSheetFixedTopElementComponent({
   );
 
   return FixedTopElementComponent ? (
+    // @ts-expect-error Server Component
     <View onLayout={handleLayout}>
       <FixedTopElementComponent />
     </View>

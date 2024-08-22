@@ -67,6 +67,7 @@ const BottomSheetDraggableViewComponent = ({
   //#endregion
 
   return (
+    // @ts-expect-error Server Component
     <PanGestureHandler
       ref={panGestureRef}
       enabled={enableContentPanningGesture}
@@ -79,6 +80,7 @@ const BottomSheetDraggableViewComponent = ({
       failOffsetX={failOffsetX}
       failOffsetY={failOffsetY}
     >
+      {/* @ts-expect-error Server Component */}
       <Animated.View style={style} {...rest}>
         {children}
       </Animated.View>

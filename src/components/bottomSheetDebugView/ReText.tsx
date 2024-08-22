@@ -28,6 +28,7 @@ const ReText = (props: TextProps) => {
     };
   }, [providedValue]);
   return (
+    // @ts-expect-error Server Component
     <AnimatedTextInput
       underlineColorAndroid="transparent"
       editable={false}

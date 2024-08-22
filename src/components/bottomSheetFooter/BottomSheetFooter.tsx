@@ -56,6 +56,7 @@ function BottomSheetFooterComponent({
   //#endregion
 
   return children !== null ? (
+    // @ts-expect-error Server Component
     <Animated.View
       pointerEvents="box-none"
       onLayout={handleContainerLayout}

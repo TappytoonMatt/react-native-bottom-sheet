@@ -7,6 +7,7 @@ const BottomSheetBackgroundComponent = ({
   pointerEvents,
   style,
 }: BottomSheetBackgroundProps) => (
+  // @ts-expect-error Server Component
   <View
     pointerEvents={pointerEvents}
     accessible={true}

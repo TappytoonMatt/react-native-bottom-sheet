@@ -10,6 +10,7 @@ interface BottomSheetDebugViewProps {
 
 const BottomSheetDebugView = ({ values }: BottomSheetDebugViewProps) => {
   return (
+    // @ts-expect-error Server Component
     <View pointerEvents="none" style={styles.container}>
       {Object.keys(values).map(key => (
         <ReText

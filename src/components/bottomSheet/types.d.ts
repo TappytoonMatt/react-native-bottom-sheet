@@ -1,4 +1,4 @@
-import type React, { PropsWithChildren } from 'react';
+import React from 'react';
 import type { ViewStyle, Insets, StyleProp } from 'react-native';
 import type {
   SharedValue,
